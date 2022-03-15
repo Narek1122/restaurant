@@ -9,8 +9,35 @@ class Restaurant extends Model
 {
     use HasFactory;
 
-    public function image()
+    protected $fillable = [
+        'name',
+        'phone_number',
+        'desc',
+        'address',
+        'longit',
+        'latit',
+        'parent_id',
+        'user_id'
+    ];
+
+    public function images()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function mainImage()
+    {
+        return $this->morphOne(Image::class, 'imageable')->where('main_img',1);
+    }
+
+    public function days()
+    {
+        return $this->belongsToMany(Day::class,'work_days','restaurant_id','day_id');
+    }
+
+    public function parent()
+    {
+        return $this->hasOne(self::class,'id','parent_id');
+    }
+
 }

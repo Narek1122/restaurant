@@ -324,7 +324,20 @@ return [
             'text'       => 'Kitchen Categories',
             'route'        => 'kitchen_categories.index',
             'can' => 'kitchen-cat-list'
+        ],
 
+        [
+            'text'       => 'Main Restaurants',
+            'route'        => 'getRestaurant',
+            
+            
+        ],
+
+        [
+            'text'       => 'Add Main Restaurant',
+            'route'        => 'createMainRestaurantPage',
+            
+            
         ],
 
     ],

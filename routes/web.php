@@ -8,6 +8,7 @@ use App\Http\Controllers\MeController;
 use App\Http\Controllers\AdminEditUserController;
 use App\Http\Controllers\KitchenCategorieController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,11 +48,16 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::group(['prefix' => 'restaurant'], function(){
-        Route::get('/create',[RestaurantController::class,'create'])->name('createRestaurantPage');
+        Route::get('/create/{id?}',[RestaurantController::class,'create'])->name('createMainRestaurantPage')->where('id', '[0-9]+');;
+        Route::post('/store/{id?}',[RestaurantController::class,'store'])->name('createRestaurant');
+        Route::get('/{id?}',[RestaurantController::class,'index'])->name('getRestaurant')->where('id', '[0-9]+');
      });
 
 
 
+
 });
+
+Route::get('get_file',[FileController::class,'getFile'])->name('getFile');
 
 
