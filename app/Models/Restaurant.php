@@ -32,7 +32,7 @@ class Restaurant extends Model
 
     public function days()
     {
-        return $this->belongsToMany(Day::class,'work_days','restaurant_id','day_id');
+        return $this->belongsToMany(Day::class,'work_days','restaurant_id','day_id')->withPivot('start as start','end as end');
     }
 
     public function parent()

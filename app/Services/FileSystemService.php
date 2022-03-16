@@ -33,6 +33,10 @@ class FileSystemService
           return $file;
      }
 
+     public function delete(String $path){
+          return Storage::delete($path);
+     }
+
     
 
 }

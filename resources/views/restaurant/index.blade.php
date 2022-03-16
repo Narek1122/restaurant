@@ -11,6 +11,9 @@
 @if(isset($data))
 @foreach($data as $dat)
 <div class="card">
+   <a class="btn" href="{{route('editRestaurant',$dat['id'])}}">
+      <i class="fas fa-edit"></i>
+   </a>
    <div class="row">
       @foreach($dat['images'] as $img)
       <div class="col">

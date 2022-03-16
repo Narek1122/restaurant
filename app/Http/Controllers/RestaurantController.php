@@ -10,6 +10,7 @@ use App\Services\RestaurantService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use LDAP\Result;
+use App\Http\Requests\DeleteImageReq;
 
 class RestaurantController extends Controller
 {
@@ -56,4 +57,22 @@ class RestaurantController extends Controller
        return redirect()->back()->with('status',200);
 
     }
+
+    public function edit($id){
+        $data = Restaurant::with('mainImage')
+        ->find($id);
+        $days = \DB::table('days')->get();
+
+        return view('restaurant.edit',compact('data','days'));
+    }
+
+    public function editData(RestaurantCreateReq $request, $id){
+        $data = $request->validated();
+
+        $res = $this->restaurantServ->update($id,$data);
+        return redirect()->back()->with('status',200);
+
+    }
+
+
 }

@@ -51,7 +51,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/create/{id?}',[RestaurantController::class,'create'])->name('createMainRestaurantPage')->where('id', '[0-9]+');;
         Route::post('/store/{id?}',[RestaurantController::class,'store'])->name('createRestaurant');
         Route::get('/{id?}',[RestaurantController::class,'index'])->name('getRestaurant')->where('id', '[0-9]+');
-     });
+        Route::get('/edit/{id}',[RestaurantController::class,'edit'])->name('editRestaurant')->where('id', '[0-9]+');
+        Route::put('/edit/{id}',[RestaurantController::class,'editData'])->name('editRestaurantData')->where('id', '[0-9]+');
+       
+    });
 
 
 
