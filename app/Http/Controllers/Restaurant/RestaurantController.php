@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Restaurant;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantCreateReq;
-use App\Models\Image;
-use App\Models\Restaurant;
-use App\Services\RestaurantService;
+use App\Models\Restaurant\Restaurant;
+use App\Services\Restaurant\RestaurantService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use LDAP\Result;
-use App\Http\Requests\DeleteImageReq;
+use function dd;
+use function redirect;
+use function view;
 
 class RestaurantController extends Controller
 {
@@ -19,6 +19,8 @@ class RestaurantController extends Controller
     public function __construct()
     {
         $this->restaurantServ = new RestaurantService;
+        $this->middleware('permission:restaurant', ['only' => ['index','create','store','edit','editData']]);
+
     }
 
     public function index($id = null){
@@ -42,17 +44,17 @@ class RestaurantController extends Controller
         if($id && isset(Restaurant::find($id)->parent)){
             return redirect()->route('getRestaurant')->with('status','no');
         }
-        
-        $data = $request->validated();
-        
 
-        
+        $data = $request->validated();
+
+
+
         $data['parent_id'] = $id;
         $data['user_id'] = Auth::user()->id;
-        
+
         $res = $this->restaurantServ->store($data);
-        
-       
+
+
 
        return redirect()->back()->with('status',200);
 
@@ -73,6 +75,8 @@ class RestaurantController extends Controller
         return redirect()->back()->with('status',200);
 
     }
+
+
 
 
 }

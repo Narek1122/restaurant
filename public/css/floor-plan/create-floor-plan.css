@@ -1,0 +1,62 @@
+.material-icons{
+    font-size: 46px;
+    color: #9124a3;
+}
+.tbl-div, .ddd{
+    width: 500px;
+    height: 500px;
+    border: 1px solid;
+    float: left;
+  }
+  .some-td{
+    width: 70px;
+    height: 70px;
+    border: 1px solid brown
+  }
+  #gallery div{
+    width: 50px;
+    height: 50px;
+
+  }
+  td>div{
+    height:100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.x{
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+  .img-table{
+      width: 70px;
+  }
+  .error{
+      color: red!important;
+  }
+  input[aria-invalid=true]{
+    background-image: linear-gradient(to top, red 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  }
+  input[aria-invalid=false]{
+    background-image: linear-gradient(to top, #9c27b0 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px) !important;
+  }
+  td>div label{
+      font-size: 10px;
+  }
+  td .ui-widget-content{
+      flex-direction: column;
+  }
+  .quantity-chair{
+      height: 20px;
+  }
+  .quantity-chair::placeholder{
+      font-size: 10px;
+  }
+@media (max-width: 1160px) {
+    .card-cont>div{
+      width: 100% !important;
+    }
+}
+

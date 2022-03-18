@@ -9,15 +9,15 @@
      @if($data->parent)
      <div class="row">
           <div class="col-6">
-               <button class="btn btn-block btn-primary">
+               <a class="btn btn-block btn-primary" href="{{route('restMenu',request()->route('id'))}}">
                     Add Menu
-               </button>
+               </a>
           </div>
           <div class="col-6">
-               <button class="btn btn-block btn-primary">
-                    Add Straucture
-               </button>
-          </div>      
+               <a class="btn btn-block btn-primary" href="{{route('floorPlan',request()->route('id'))}}">
+                   Floor Plan
+               </a>
+          </div>
      </div>
      @endif
         <div class="card-body login-card-body">
@@ -30,19 +30,19 @@
                     <div class="col form-group">
                          <label for="">Logo</label>
                          <br>
-                         <img class="img-responsive" src="{{route('getFile',['path' => $data->parent->mainImage['path'] ?: null])}}" alt="Photo" width="100px">       
+                         <img class="img-responsive" src="{{route('getFile',['path' => $data->parent->mainImage['path'] ?: null])}}" alt="Photo" width="100px">
                     </div>
                </div>
-               @endif 
+               @endif
 
                @if(isset($data->parent))
                <div class="form-group">
                     <label >Parent Name</label>
                     <input type="text" class="form-control"  value="{{$data->parent['name'] ?? null}}" disabled>
                </div>
-         
+
                @endif
-              
+
                <div class="form-group">
                     <label >Name</label>
                     <input type="text" class="form-control"  placeholder="Enter name" value="{{$data['name'] ?? null}}" name="name">
@@ -65,13 +65,13 @@
                     @foreach($days as $num => $day)
                     <div class="col-3">
                     <label>{{$day->day}}</label>
-                    <input type="time" class="form-control" name="{{$day->id . '_start'}}" 
+                    <input type="time" class="form-control" name="{{$day->id . '_start'}}"
                     value="{{$data->days[$num]['start'] ?? null}}"
                     >
-                    <input type="time" class="form-control" name="{{$day->id . '_end'}}" 
+                    <input type="time" class="form-control" name="{{$day->id . '_end'}}"
                     value="{{$data->days[$num]['end'] ?? null}}"
                     >
-                    </div> 
+                    </div>
                     @endforeach
                </div>
                @endif
@@ -81,16 +81,16 @@
                     @foreach($data->images as $num => $dat)
                     <div class="col-3">
                          <div class="image_container">
-                              <div class="top-right">                  
+                              <div class="top-right">
                                         <input class="delete_image{{$num}}" type="text" hidden name="delete_image[]">
                                         <button class="btn" type="button" onclick="deleted('{{$num}}','{{$dat['path']}}')">
                                              <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                               </div>
                               <img class="img-responsive" src="{{route('getFile',['path' => $dat['path'] ?: null])}}" alt="Photo" width="100%">
-                              
-                         </div>       
-                    </div> 
+
+                         </div>
+                    </div>
                     @endforeach
                </div>
                @endif
@@ -129,14 +129,14 @@
                 </div>
                <br>
                <div class="col">
-                    <div id="map" class="map"></div>  
+                    <div id="map" class="map"></div>
                </div>
                @endif
                <div class="row">
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-block">SAVE</button>
                     </div>
-          </form>    
+          </form>
           </div>
      </div>
 @endsection
@@ -153,7 +153,7 @@
           text-align: center;
           color: white;
           width: 200px;
-          
+
           }
           .top-right {
           position: absolute;
@@ -170,7 +170,7 @@
      function deleted(id,path){
           let inp = $('.delete_image' + id)
           inp.val(path)
-          
+
      }
 </script>
 @if($data->parent)
@@ -202,9 +202,9 @@
         let lon = coords[0];
         $('.latit_inp').val(lat)
         $('.longit_inp').val(lon)
-      
-        
-    }); 
+
+
+    });
 
 
 

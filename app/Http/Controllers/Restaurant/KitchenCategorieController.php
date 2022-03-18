@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Restaurant;
 
+use App\Http\Controllers\Controller;
+use App\Models\Restaurant\KitchenCategorie;
 use Illuminate\Http\Request;
-use App\Models\KitchenCategorie;
+use function redirect;
+use function response;
+use function view;
 
 class KitchenCategorieController extends Controller
 {

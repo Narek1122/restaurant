@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Restaurant;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KitchenCategorie extends Model
+class Menu extends Model
 {
     use HasFactory;
 
-    public $table = 'kitchen_categories';
+    public $table = 'menu';
 
     public $fillable = ['name'];
-
-    public $timestamps = false;
 }

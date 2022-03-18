@@ -329,15 +329,17 @@ return [
         [
             'text'       => 'Main Restaurants',
             'route'        => 'getRestaurant',
-            
-            
+            'can' => 'restaurant'
+
+
         ],
 
         [
             'text'       => 'Add Main Restaurant',
             'route'        => 'createMainRestaurantPage',
-            
-            
+            'can' => 'restaurant'
+
+
         ],
 
     ],

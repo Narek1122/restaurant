@@ -1,14 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoleController;
-use  App\Http\Controllers\PermissionController;
-use App\Http\Controllers\MeController;
 use App\Http\Controllers\AdminEditUserController;
-use App\Http\Controllers\KitchenCategorieController;
-use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\MeController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\Restaurant\KitchenCategorieController;
+use App\Http\Controllers\Restaurant\RestaurantController;
+use App\Http\Controllers\RoleController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Restaurant\FloorPlanController;
+use App\Http\Controllers\Restaurant\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +54,27 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/{id?}',[RestaurantController::class,'index'])->name('getRestaurant')->where('id', '[0-9]+');
         Route::get('/edit/{id}',[RestaurantController::class,'edit'])->name('editRestaurant')->where('id', '[0-9]+');
         Route::put('/edit/{id}',[RestaurantController::class,'editData'])->name('editRestaurantData')->where('id', '[0-9]+');
-       
+
+        Route::group(['prefix' => 'floor_plan'], function(){
+            Route::get('/{id}',[FloorPlanController::class,'index'])->name('floorPlan')->where('id', '[0-9]+');
+            Route::get('/edit/{id}',[FloorPlanController::class,'edit'])->name('editFloorPlan')->where('id', '[0-9]+');
+            Route::get('create/{id}',[FloorPlanController::class,'create'])->name('addFloorPlan')->where('id', '[0-9]+');
+            Route::post('store/{id}',[FloorPlanController::class,'store'])->name('createFloorPlanData')->where('id', '[0-9]+');
+            Route::post('update/{id}',[FloorPlanController::class,'update'])->name('updateFloorPlanData')->where('id', '[0-9]+');
+        });
+
+        Route::group(['prefix' => 'menu'], function(){
+            Route::get('/{id}',[MenuController::class,'index'])->name('restMenu')->where('id', '[0-9]+');
+
+
+            Route::group(['prefix' => 'menu'], function(){
+               // Route::get('/',[FloorPlanController::class,'index'])->name('floorPlan')->where('id', '[0-9]+');
+
+            });
+        });
+
+
+
     });
 
 
