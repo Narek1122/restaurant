@@ -11,5 +11,24 @@ class Menu extends Model
 
     public $table = 'menu';
 
-    public $fillable = ['name'];
+    public $fillable = [
+        'name',
+        'restaurant_id',
+        'category_id',
+        'price',
+        'img',
+        'desc',
+        'sale_price'
+
+    ];
+
+    public function rest()
+    {
+        return $this->belongsTo(Restaurant::class,'restaurant_id','id');
+    }
+
+    public function category()
+    {
+        return $this->hasOne(MenuCategory::class,'id','category_id');
+    }
 }

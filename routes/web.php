@@ -65,12 +65,12 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::group(['prefix' => 'menu'], function(){
             Route::get('/{id}',[MenuController::class,'index'])->name('restMenu')->where('id', '[0-9]+');
+            Route::get('/edit/{id}',[MenuController::class,'edit'])->name('restMenuEdit')->where('id', '[0-9]+');
+            Route::post('/create/{id}',[MenuController::class,'create'])->name('restMenuCreate')->where('id', '[0-9]+');
+            Route::delete('/delete/{id}',[MenuController::class,'delete'])->name('restMenuDelete')->where('id', '[0-9]+');
+            Route::put('/update/{id}',[MenuController::class,'update'])->name('restMenuUpdate')->where('id', '[0-9]+');
 
 
-            Route::group(['prefix' => 'menu'], function(){
-               // Route::get('/',[FloorPlanController::class,'index'])->name('floorPlan')->where('id', '[0-9]+');
-
-            });
         });
 
 
