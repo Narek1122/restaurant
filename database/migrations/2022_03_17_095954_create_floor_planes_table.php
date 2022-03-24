@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('img')->nullable();
             $table->integer('table_x');
             $table->integer('table_y');
-            $table->json('data_json');
+            $table->binary('data_json');
             $table->mediumText('description')->nullable();
             $table->timestamps();
 

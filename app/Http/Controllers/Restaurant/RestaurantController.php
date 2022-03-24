@@ -56,7 +56,8 @@ class RestaurantController extends Controller
 
 
 
-       return redirect()->back()->with('status',200);
+
+       return redirect()->route('editRestaurant',$res['id'])->with('status',200);
 
     }
 

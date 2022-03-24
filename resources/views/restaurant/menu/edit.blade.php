@@ -22,15 +22,19 @@
             <li class="list-group-item">
                 <div class="form-group">
                     <label>Category</label>
-                    <select class="form-control" name="category_id">
+
                         @if($categories)
-                            @foreach($categories as $category)
-                                <option value="{{$category['id']}}" @if($category['id'] == $data['category_id']) selected @endif>
-                                    {{$category['name']}}
-                                </option>
-                            @endforeach
+                            <input class="form-control" list="datalistOptions" id="exampleDataList" name="category" value="{{$data['category']['name']}}">
+                            <datalist id="datalistOptions">
+                                @foreach($categories as $category)
+                                    <option value="{{$category['name']}}">
+
+
+                                @endforeach
+                            </datalist>
+
                         @endif
-                    </select>
+
                 </div>
             </li>
             <li class="list-group-item">

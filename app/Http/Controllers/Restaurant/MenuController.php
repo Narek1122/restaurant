@@ -17,13 +17,13 @@ class MenuController extends Controller
     {
         $this->menuServ = new MenuService();
     }
-    public function index()
+    public function index($id)
     {
         $data = $this->menuServ->index();
         $categories = MenuCategory::get();
         if(request()->ajax()) {
 
-            $customers = Menu::with('category')->get();
+            $customers = Menu::with('category')->where('restaurant_id',$id)->get();
 
             return datatables()
                 ->of($customers)

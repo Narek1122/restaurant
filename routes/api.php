@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::group(['prefix' => 'kitchen_categories'], function(){
-//    Route::get('/edit',[KitchenCategorieController::class,'edit'])->name('editKitchenCategories');
-//
-//});
+Route::post('register',[UserController::class ,'signUp']);
+Route::post('get_pass',[UserController::class ,'getPass']);
+
+Route::group(["middleware" => ["auth:api"]],function(){
+
+    Route::get('test',[UserController::class ,'test']);
+
+
+
+
+});
 
 

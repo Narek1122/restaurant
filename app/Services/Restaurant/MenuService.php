@@ -22,6 +22,10 @@ class MenuService
 
     public function create(Int $id, $data)
     {
+        $cat = MenuCategory::firstOrNew(['name' => $data['category']]);
+        $cat->save();
+        $data['category_id'] = $cat['id'];
+
         $created = Menu::create($data,['except' => ['img'] ]);
 
         if(isset($data['img'])){
@@ -46,6 +50,10 @@ class MenuService
 
     public function update(Int $id,$data)
     {
+       $cat = MenuCategory::firstOrNew(['name' => $data['category']]);
+       $cat->save();
+       $data['category_id'] = $cat['id'];
+
         $find = Menu::find($id);
 
         $updated = $find->update($data);
@@ -65,5 +73,6 @@ class MenuService
 
 
     }
+
 
 }

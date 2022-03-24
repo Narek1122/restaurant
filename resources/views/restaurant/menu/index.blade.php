@@ -53,7 +53,7 @@
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Price</label>
                             <div class="col-sm-12">
-                                <input type="number" class="form-control" id="price" name="price" placeholder="Enter Price" required="">
+                                <input pattern="^\d*(\.\d{0,2})?$" class="form-control" id="price" name="price" placeholder="Enter Price" required="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -74,16 +74,12 @@
                         <div class="form-group">
                             <label>Select Category</label>
                             @if($categories)
-                            <select class="form-control" name="category_id">
-                                <option value="" disabled selected>
-                                    Select Category
-                                </option>
-                                @foreach($categories as $cat)
-                                    <option value="{{$cat['id']}}">
-                                        {{$cat['name']}}
-                                    </option>
-                                @endforeach
-                            </select>
+                                <input class="form-control" list="datalistOptions" id="exampleDataList" name="category">
+                                <datalist id="datalistOptions">
+                                    @foreach($categories as $cat)
+                                        <option value="{{$cat['name']}}">
+                                    @endforeach
+                                </datalist>
                             @endif
                         </div>
                         <div class="col-sm-offset-2 col-sm-10">
